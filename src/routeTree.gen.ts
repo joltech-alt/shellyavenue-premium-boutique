@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CuentaRouteImport } from './routes/cuenta'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as MarcasRouteImport } from './routes/marcas'
+import { Route as NuevosIngresosRouteImport } from './routes/nuevos-ingresos'
+import { Route as TiendaRouteImport } from './routes/tienda'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CuentaRoute = CuentaRouteImport.update({
+  id: '/cuenta',
+  path: '/cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarcasRoute = MarcasRouteImport.update({
+  id: '/marcas',
+  path: '/marcas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NuevosIngresosRoute = NuevosIngresosRouteImport.update({
+  id: '/nuevos-ingresos',
+  path: '/nuevos-ingresos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiendaRoute = TiendaRouteImport.update({
+  id: '/tienda',
+  path: '/tienda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/favoritos': typeof FavoritosRoute
+  '/marcas': typeof MarcasRoute
+  '/nuevos-ingresos': typeof NuevosIngresosRoute
+  '/tienda': typeof TiendaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/favoritos': typeof FavoritosRoute
+  '/marcas': typeof MarcasRoute
+  '/nuevos-ingresos': typeof NuevosIngresosRoute
+  '/tienda': typeof TiendaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cuenta': typeof CuentaRoute
+  '/favoritos': typeof FavoritosRoute
+  '/marcas': typeof MarcasRoute
+  '/nuevos-ingresos': typeof NuevosIngresosRoute
+  '/tienda': typeof TiendaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/cuenta' | '/favoritos' | '/marcas' | '/nuevos-ingresos' | '/tienda'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/cuenta' | '/favoritos' | '/marcas' | '/nuevos-ingresos' | '/tienda'
+  id:
+    | '__root__'
+    | '/'
+    | '/cuenta'
+    | '/favoritos'
+    | '/marcas'
+    | '/nuevos-ingresos'
+    | '/tienda'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CuentaRoute: typeof CuentaRoute
+  FavoritosRoute: typeof FavoritosRoute
+  MarcasRoute: typeof MarcasRoute
+  NuevosIngresosRoute: typeof NuevosIngresosRoute
+  TiendaRoute: typeof TiendaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cuenta': {
+      id: '/cuenta'
+      path: '/cuenta'
+      fullPath: '/cuenta'
+      preLoaderRoute: typeof CuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marcas': {
+      id: '/marcas'
+      path: '/marcas'
+      fullPath: '/marcas'
+      preLoaderRoute: typeof MarcasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nuevos-ingresos': {
+      id: '/nuevos-ingresos'
+      path: '/nuevos-ingresos'
+      fullPath: '/nuevos-ingresos'
+      preLoaderRoute: typeof NuevosIngresosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tienda': {
+      id: '/tienda'
+      path: '/tienda'
+      fullPath: '/tienda'
+      preLoaderRoute: typeof TiendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CuentaRoute: CuentaRoute,
+  FavoritosRoute: FavoritosRoute,
+  MarcasRoute: MarcasRoute,
+  NuevosIngresosRoute: NuevosIngresosRoute,
+  TiendaRoute: TiendaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
